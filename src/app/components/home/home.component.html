@@ -12,7 +12,7 @@
     <div class="form-component">
       <form [formGroup]="cadastro" (ngSubmit)="onSubmit()">
         <div class="form-component">
-          <div>
+          <div >
             <label for="exampleFormControlInput1" class="form-label"
               >Nome completo</label
             >
@@ -103,14 +103,14 @@
               Número de celular possui Whatsapp
             </label>
           </div>
-          <div>
+          <div class="label-start" >
             <input
               class="form-check-input"
               type="checkbox"
               value=""
               id="flexCheckDefault"
             />
-            <label class="form-check-label" for="flexCheckDefault">
+            <label class="form-check-label " for="flexCheckDefault">
               Enviar notificações por E-mail
             </label>
           </div>
@@ -123,23 +123,24 @@
               value=""
               id="flexCheckNumeroZap"
             />
-            <label class="form-check-label" for="flexCheckNumeroZap">
+            <label class="form-check-label " for="flexCheckNumeroZap">
               Enviar notificações por SMS
             </label>
           </div>
         </div>
         <button type="submit" class="btn btn-primary btn-cadastrar">
-          Cadastrar contato
+          <strong>Cadastrar contato</strong>
         </button>
-         
-      <div>
-        <hr />
-      </div>
+
+
       </form>
 
-     
+
     </div>
   </div>
+</div>
+<div>
+  <hr />
 </div>
 
 <table class="table">
