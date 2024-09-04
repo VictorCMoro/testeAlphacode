@@ -18,6 +18,7 @@ export class HomeComponent {
 
   editar: boolean = false;
   contatos: Contato[] = [];
+  contatoAtual: Contato | null = null;
 
   constructor(private http: HttpClient, private homeService: HomeService) {}
 
@@ -33,7 +34,7 @@ export class HomeComponent {
   onSubmit(): void{
     const formValue = this.cadastro.value;
     const newContato: Contato = {
-      id: Math.floor(Math.random() * 100), 
+      id: this.editar ? this.contatoAtual?.id || 0 : Math.floor(Math.random() * 100),
       nome: formValue.nome || '',
       dataNasc: formValue.dataNasc || '', 
       email: formValue.email || '',
@@ -75,6 +76,7 @@ export class HomeComponent {
     this.homeService.updateContato(contato).subscribe({
       next: (response) => {
       this.editar = false
+      console.log(contato.id)
         console.log(response)
         console.log('Contato atualizado com sucesso!', response);
         this.ngOnInit();
@@ -89,7 +91,9 @@ export class HomeComponent {
     this.http.get<Contato>(`http://localhost/backend/getContato.php?id=${id}`)
       .subscribe({
         next: (contato) => {
+          console.log(id)
           this.editar = true
+          this.contatoAtual = contato;
           this.cadastro.patchValue({
             nome: contato.nome,
             dataNasc: contato.dataNasc,
