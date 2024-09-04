@@ -3,9 +3,9 @@ body, html {
     margin: 0;
 }
 
-/* Estilo para o app principal */
+
 app-root {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Garante que o app ocupe toda a altura da janela */
+    min-height: 100vh; 
 }
