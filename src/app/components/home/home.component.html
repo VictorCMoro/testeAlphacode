@@ -128,10 +128,12 @@
             </label>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-cadastrar">
+        <button type="submit" *ngIf="!editar" class="btn btn-primary btn-cadastrar">
           <strong>Cadastrar contato</strong>
         </button>
-
+        <button type="submit" *ngIf="editar" class="btn btn-primary btn-cadastrar">
+          <strong>Atualizar contato</strong>
+        </button>
 
       </form>
 
@@ -160,7 +162,7 @@
             <td>{{ contato.email }}</td>
             <td>{{ contato.celular }}</td>
             <td>
-              <button class="btn">
+              <button class="btn" (click)="onEdit(contato.id)">
                 <img src="../../../assets/editar.png" alt="ícone-editar" />
               </button>
               <button class="btn" (click)="onDelete(contato.id)">

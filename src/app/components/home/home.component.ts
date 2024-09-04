@@ -16,6 +16,7 @@ export class HomeComponent {
     celular: new FormControl('')
   });
 
+  editar: boolean = false;
   contatos: Contato[] = [];
 
   constructor(private http: HttpClient, private homeService: HomeService) {}
@@ -32,9 +33,9 @@ export class HomeComponent {
   onSubmit(): void{
     const formValue = this.cadastro.value;
     const newContato: Contato = {
-      id: 3, // Assumindo que o ID será gerado pelo backend
+      id: Math.floor(Math.random() * 100), 
       nome: formValue.nome || '',
-      dataNasc: formValue.dataNasc || '', // Converter para Date
+      dataNasc: formValue.dataNasc || '', 
       email: formValue.email || '',
       celular: formValue.celular || '',
     };
@@ -62,5 +63,35 @@ export class HomeComponent {
         console.error('Erro ao excluir contato', err);
       }
     });
+  }
+
+  onUpdate(contato: Contato): void {
+    this.homeService.updateContato(contato).subscribe({
+      next: (response) => {
+        console.log('Contato atualizado com sucesso!', response);
+        this.ngOnInit();
+      },
+      error: (err) => {
+        console.error('Erro ao atualizar contato', err);
+      }
+    });
+  }
+
+  onEdit(id: number): void {
+    this.http.get<Contato>(`http://localhost/backend/getContato.php?id=${id}`)
+      .subscribe({
+        next: (contato) => {
+          this.editar = true
+          this.cadastro.patchValue({
+            nome: contato.nome,
+            dataNasc: contato.dataNasc,
+            email: contato.email,
+            celular: contato.celular
+          });
+        },
+        error: (err) => {
+          console.error('Erro ao buscar contato', err);
+        }
+      });
   }
 }

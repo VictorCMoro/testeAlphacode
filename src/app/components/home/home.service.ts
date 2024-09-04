@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Contato } from 'src/models/contato';
 
 @Injectable({
@@ -18,5 +19,9 @@ export class HomeService {
     return this.http.delete(`${this.apiUrl}/deleteData.php`, {
       body: {id}
     })
+  }
+
+  updateContato(contato: Contato): Observable<any> {
+    return this.http.post(`${this.apiUrl}/updateData.php`, contato);
   }
 }
