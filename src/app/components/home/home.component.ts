@@ -39,18 +39,24 @@ export class HomeComponent {
       email: formValue.email || '',
       celular: formValue.celular || '',
     };
-    this.homeService.addContato(newContato).subscribe({
-      next: (response) => {
-        console.log(response)
-        console.log(newContato)
-        console.log('deu certo no angular', response);
-        this.cadastro.reset();
-      },
-      error: (err) => {
-        console.error('deu erro no angular', err);
-      },
-    
-    })
+    if (this.editar) {
+      
+      this.onUpdate(newContato);
+    } else {
+      
+      this.homeService.addContato(newContato).subscribe({
+        next: (response) => {
+          console.log(response);
+          console.log('Contato cadastrado com sucesso', response);
+          this.cadastro.reset();
+          this.editar = false; 
+          this.ngOnInit();
+        },
+        error: (err) => {
+          console.error('Erro ao cadastrar contato', err);
+        }
+      });
+    }
   }
 
   onDelete(id: number): void {
@@ -68,6 +74,8 @@ export class HomeComponent {
   onUpdate(contato: Contato): void {
     this.homeService.updateContato(contato).subscribe({
       next: (response) => {
+      this.editar = false
+        console.log(response)
         console.log('Contato atualizado com sucesso!', response);
         this.ngOnInit();
       },

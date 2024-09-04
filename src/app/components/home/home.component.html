@@ -26,14 +26,14 @@
           </div>
 
           <div>
-            <label for="exampleFormControlInput1" class="form-label"
+            <label for="dataNasc" class="form-label"
               >Data de nascimento</label
             >
             <input
-              type="email"
+              type="string"
               class="form-control"
-              id="exampleFormControlInput1"
-              placeholder="Ex.: 11/10/2003"
+              id="dataNasc"
+              placeholder="Ex.: 2003/20/10"
               formControlName="dataNasc"
             />
           </div>
@@ -41,51 +41,51 @@
 
         <div class="form-component">
           <div>
-            <label for="exampleFormControlInput1" class="form-label"
+            <label for="email" class="form-label"
               >Email</label
             >
             <input
               type="text"
               class="form-control"
-              id="exampleFormControlInput1"
+              id="email"
               placeholder="Ex.: vicmoro@gmail.com"
               formControlName="email"
             />
           </div>
           <div>
-            <label for="exampleFormControlInput1" class="form-label"
+            <label for="profissao" class="form-label"
               >Profissão</label
             >
             <input
               type="email"
               class="form-control"
-              id="exampleFormControlInput1"
+              id="profissao"
               placeholder="Ex.: Desenvolvedor web"
-              formControlName="profissao"
+              
             />
           </div>
         </div>
         <div class="form-component">
           <div>
-            <label for="exampleFormControlInput1" class="form-label"
+            <label for="tel" class="form-label"
               >Telefone para contato</label
             >
             <input
               type="email"
               class="form-control"
-              id="exampleFormControlInput1"
+              id="tel"
               placeholder="Ex.: (41) 98885-9735"
-              formControlName="telContato"
+              
             />
           </div>
           <div>
-            <label for="exampleFormControlInput1" class="form-label"
+            <label for="celular" class="form-label"
               >Celular para contato</label
             >
             <input
               type="email"
               class="form-control"
-              id="exampleFormControlInput1"
+              id="celular"
               placeholder="Ex.: (41) 98885-9735"
               formControlName="celular"
             />
@@ -162,12 +162,15 @@
             <td>{{ contato.email }}</td>
             <td>{{ contato.celular }}</td>
             <td>
-              <button class="btn" (click)="onEdit(contato.id)">
-                <img src="../../../assets/editar.png" alt="ícone-editar" />
-              </button>
-              <button class="btn" (click)="onDelete(contato.id)">
-                <img src="../../../assets/excluir.png" alt="botão excluir" />
-              </button>
+              <div>
+                <button class="btn" (click)="onEdit(contato.id)">
+                  <img src="../../../assets/editar.png" alt="ícone-editar" />
+                </button>
+                <button class="btn" (click)="onDelete(contato.id)">
+                  <img src="../../../assets/excluir.png" alt="botão excluir" />
+                </button>
+              </div>
+             
             </td>
           </tr>
         </tbody>

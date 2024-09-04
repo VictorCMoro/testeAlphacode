@@ -11,11 +11,11 @@ export class HomeService {
 
   constructor(private http: HttpClient) { }
 
-  addContato(contato: Contato){
+  addContato(contato: Contato): Observable<any>{
     return this.http.post(`${this.apiUrl}/createData.php`, contato) 
   }
 
-  deleteContato(id: number){
+  deleteContato(id: number): Observable<any>{
     return this.http.delete(`${this.apiUrl}/deleteData.php`, {
       body: {id}
     })
